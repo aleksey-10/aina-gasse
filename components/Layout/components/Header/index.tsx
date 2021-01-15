@@ -4,7 +4,7 @@ import { Button } from '../../../Button';
 import { Menu } from './components/Menu';
 //import { ReactComponent as Bag } from '../../../../assets/icons/shopping-bag.svg';
 import { Logo } from '../../../Logo';
-//import { Fade } from 'react-reveal';
+import { Fade } from 'react-reveal';
 //import { useTranslation } from 'react-i18next';
 import styles from './styles.module.scss';
 
@@ -43,7 +43,7 @@ export const Header = () => {
   }, [handleScroll]);
 
   return (
-    //<Fade top>
+    <Fade top>
       <header className={styles.header} style={headerStyles}>
         <Menu visible={menuOpen} onClose={() => setMenuOpen(false)} />
 
@@ -55,26 +55,30 @@ export const Header = () => {
           />
           <div className={styles.logo}>
             <Link href="/">
-              <Logo />
+              <a><Logo /></a>
             </Link>
           </div>
 
           <div className={styles.right}>
             <Link href="/catalog">
-              <Button type="text" className={styles.catalog}>
-                {t('Catalog')}
-              </Button>
+              <a>
+                <Button type="text" className={styles.catalog}>
+                  {t('Catalog')}
+                </Button>
+              </a>
             </Link>
 
             <Link href="/cart">
-              <Button type="icon">
-                {/*<Bag />*/}
-                Bag
-              </Button>
+              <a>
+                <Button type="icon">
+                  {/*<Bag />*/}
+                  Bag
+                </Button>
+              </a>
             </Link>
           </div>
         </div>
       </header>
-    //</Fade>
+    </Fade>
   );
 };

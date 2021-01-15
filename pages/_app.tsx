@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import { Intro } from '../components/Intro';
+import { Provider } from 'react-redux';
+import { store } from '../redux/store';
+import config from 'react-reveal/globals';
 import '../styles/styles.scss';
 
-function MyApp({ Component, pageProps }) {
-  const [introShown, setIntroShown] = useState<boolean>(false);
+config({ ssrFadeout: true });
 
-  if (!introShown) {
-    return (
-      <Intro  onIntroEnd={() => {
-        setIntroShown(true);
-      }} />
-    );
-  }
+function App({ Component, pageProps }) {
+  const [isIntroShown, setIntroShown] = useState<boolean>(false);
 
-  return <Component {...pageProps} />;
+  return (
+    <Provider store={store}>
+      {!isIntroShown && <Intro onIntroEnd={() => setIntroShown(true)}/>}
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
 
-export default MyApp;
+export default App;

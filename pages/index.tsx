@@ -1,8 +1,6 @@
-import Head from 'next/head'
-import { FC } from 'react';
 import { Layout } from '../components/Layout';
 
-export default function()  {
+export default function Index()  {
   return (
     <Layout title="Main Page | Aina Gasse">
       <h1>Aina Gasse</h1>

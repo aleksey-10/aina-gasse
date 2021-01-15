@@ -1,14 +1,16 @@
 import Head from 'next/head';
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
+import { Intro } from '../Intro';
 import { Header, Main, Footer } from "./components";
 import styles from './styles.module.scss';
 
 interface Props {
   children: ReactNode;
   title: string;
+  metaTags?: ReactNode[];
 }
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children, title, metaTags }: Props) => {
   return (
     <>
       <Head>
