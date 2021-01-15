@@ -1,0 +1,50 @@
+@import 'styles/vars';
+@import 'styles/mixins';
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: rgba($color-light, 0.95);
+  @include box-shadow;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.catalog {
+  margin-right: 32px;
+}
+
+.left,
+.right {
+  display: inline-flex;
+  align-items: center;
+  width: 200px;
+}
+
+.right {
+  justify-content: flex-end;
+}
+
+@media (max-width: $resolution-mobile) {
+  .left,
+  .right {
+    width: auto;
+  }
+
+  .catalog {
+    display: none;
+  }
+}

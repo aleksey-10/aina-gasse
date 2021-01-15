@@ -1,0 +1,66 @@
+@import 'vars';
+@import 'mixins';
+@import 'reset';
+@import 'typography';
+@import 'extends';
+
+//@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
+html,
+body,
+#__next {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Abel', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(../assets/img/bg2123123213.webp);
+  background-color: $color-primary;
+  background-blend-mode: screen;
+  background-size: cover;
+  //background: #FFFFFF;
+  //background: -moz-linear-gradient(left, #FFFFFF 0%, #FEF8FF 50%, #FBEEFF 100%);
+  //background: -webkit-linear-gradient(left, #FFFFFF 0%, #FEF8FF 50%, #FBEEFF 100%);
+  //background: linear-gradient(to right, #FFFFFF 0%, #FEF8FF 50%, #FBEEFF 100%);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: $resolution-desktop;
+  padding: 16px 48px;
+  margin: 0 auto;
+
+  @media (max-width: $resolution-tablet) {
+    padding: 16px 24px;
+  }
+
+  @media (max-width: $resolution-mobile) {
+    padding: 8px 12px;
+  }
+}
+
+.section {
+  padding-top: 24px;
+  margin-bottom: 16px;
+}

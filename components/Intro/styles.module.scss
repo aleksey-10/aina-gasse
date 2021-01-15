@@ -1,0 +1,58 @@
+@import 'styles/vars';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.intro {
+  padding: 0 32px 48px;
+}
+
+.text {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Abel', sans-serif;
+}
+
+.firstName,
+.lastName {
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  text-shadow: 2px 2px 6px rgba($color-primary, 0.15);
+  font-size: 5rem;
+}
+
+.lastName {
+  font-weight: 700;
+  font-size: 5.25rem;
+}
+
+.description {
+  div {
+    display: flex;
+    justify-content: space-between;
+    text-transform: uppercase;
+  }
+}
+
+.loader {
+  position: absolute;
+  bottom: 48px;
+}
+
+@media (max-width: $resolution-mobile) {
+  .text {
+    font-size: 3.75rem;
+  }
+
+  .firstName {
+    font-size: 3.75rem;
+  }
+
+  .lastName {
+    font-size: 4rem;
+  }
+}

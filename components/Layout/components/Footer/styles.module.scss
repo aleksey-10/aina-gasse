@@ -1,0 +1,15 @@
+@import 'styles/mixins';
+@import 'styles/vars';
+@import 'styles/extends';
+
+.footer {
+  background-color: $color-dark;
+  color: $color-light;
+  @include box-shadow;
+  font-size: 0.875rem;
+}
+
+.label {
+  @extend .link;
+  font-size: 0.875rem;
+}

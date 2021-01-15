@@ -1,0 +1,11 @@
+@mixin hover($property-name, $property-value, $transition-time: 0.2s) {
+  transition: #{$property-name} $transition-time;
+
+  &:hover {
+    #{$property-name}: $property-value;
+  }
+}
+
+@mixin box-shadow($x: 0, $y: 0, $blur: 16px, $spread: 0, ) {
+  box-shadow: $x $y $blur $spread rgba($color-dark, 0.1);
+}

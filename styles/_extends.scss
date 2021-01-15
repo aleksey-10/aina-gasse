@@ -1,0 +1,11 @@
+.text-secondary {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+}
+
+.link {
+  @extend .text-secondary;
+  @include hover(color, $color-primary);
+  padding: 8px 0;
+}

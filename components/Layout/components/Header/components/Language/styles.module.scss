@@ -1,0 +1,15 @@
+@import 'styles/vars';
+
+.list {
+  display: flex;
+  border-bottom: 1px solid $color-neutral;
+}
+
+.item {
+  margin-right: 16px;
+}
+
+.button {
+  padding: 16px 0;
+  font-size: inherit;
+}
