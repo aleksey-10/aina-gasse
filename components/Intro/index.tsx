@@ -23,22 +23,22 @@ export const Intro = ({ onIntroEnd }: Props) => {
       <div className={styles.intro}>
         <div className={styles.text}>
           <h1 className={styles.firstName}>
-            <Fade {...titleProps} left ssrFadeout={false}>
+            <Fade {...titleProps} left ssrReveal>
               Aina
             </Fade>
           </h1>
           <h1 className={styles.lastName}>
-            <Fade {...titleProps} right ssrFadeout={false}>
+            <Fade {...titleProps} right ssrReveal>
               Gass&#201;
             </Fade>
           </h1>
         </div>
         <div className={styles.description}>
           <Fade
-            ssrFadeout={false}
             cascade
             duration={1500}
             bottom
+            ssrReveal
           >
             Designer
           </Fade>
