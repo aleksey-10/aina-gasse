@@ -1,18 +1,17 @@
 import { useMemo } from "react";
+import { useTranslation } from "../i18n";
 //import { useTranslation } from "react-i18next";
 import { MENU } from "../utils/Menu";
 
 export const useMenu = () => {
-  //const { t } = useTranslation();
-const t = (data) => data;
-  const menu = useMemo(() => {
-    //const hash = t('menu', { returnObjects: true });
+  const { t } = useTranslation();
 
-    return MENU.map(key => ({
+  const menu = useMemo(() => {
+    return MENU.map((key: string) => ({
       key,
       label: t(key),
       get path() {
-        return '/' + this.key;
+        return `/${key.toLowerCase()}`;
       },
     }))
   }, [t]);

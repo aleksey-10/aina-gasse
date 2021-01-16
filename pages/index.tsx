@@ -3,6 +3,8 @@ import { Fade } from 'react-reveal';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import RootState from '../interfaces/RootState';
+import { withTranslation } from '../i18n';
+import { ReactNode } from 'react';
 
 interface Image {
   original: string;
@@ -19,12 +21,15 @@ const images: Image[] = [
 
 const aina = 'https://ainagasse.ua/wp-content/uploads/2019/12/Айна-Гассе.jpeg';
 
-export default function Index()  {
+interface Props {
+  t(s: string): ReactNode;
+}
+
+function Index({ t }: Props)  {
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
-  const t = data => data;
 
   return (
-    <Layout title="Main Page | Aina Gasse">
+    <Layout title={t('Main Page').toString()}>
       <div className="container">
         <section className={`section ${styles.intro}`}>
           <div className={styles.left}>
@@ -53,7 +58,7 @@ export default function Index()  {
           </div>
           <Fade right when={!isPageLoading}>
             <p className={styles.description}>
-              {t('home.description')}
+              {t('homeFirstSectionDescription')}
             </p>
           </Fade>
         </section>
@@ -61,3 +66,9 @@ export default function Index()  {
     </Layout>
   )
 }
+
+Index.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+});
+
+export default withTranslation('common')(Index);

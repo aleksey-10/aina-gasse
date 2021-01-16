@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../../../Button';
 import { Menu } from './components/Menu';
 import  Bag from '../../../../assets/icons/shopping-bag.svg';
 import { Logo } from '../../../Logo';
 import { Fade } from 'react-reveal';
-//import { useTranslation } from 'react-i18next';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import RootState from '../../../../interfaces/RootState';
+import { I18nContext } from 'next-i18next';
 
 interface HeaderStyles {
   backgroundColor?: string;
@@ -18,9 +18,9 @@ interface HeaderStyles {
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
-  //const { t } = useTranslation();
+  const { i18n } = useContext(I18nContext);
+
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
-  const t = (data) => data;
 
   const handleScroll = useCallback(event => {
     const { scrollTop } = event.target;
@@ -66,17 +66,14 @@ export const Header = () => {
             <Link href="/catalog">
               <a>
                 <Button type="text" className={styles.catalog}>
-                  {t('Catalog')}
+                  {i18n.t('Catalog')}
                 </Button>
               </a>
             </Link>
 
             <Link href="/cart">
               <a>
-                <Button type="icon">
-                  b
-                  {/*<img src={Bag} />*/}
-                </Button>
+                <Button type="icon" className="lnr lnr-cart" />
               </a>
             </Link>
           </div>

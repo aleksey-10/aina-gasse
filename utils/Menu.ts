@@ -1,3 +1,3 @@
-export const MENU: string[] = ['about', 'catalog', 'collections', 'contacts', 'comments'];
+export const MENU: string[] = ['About', 'Catalog', 'Collections', 'Contacts', 'Comments'];
 
 export const LANGUAGES = ['ua', 'ru', 'en']

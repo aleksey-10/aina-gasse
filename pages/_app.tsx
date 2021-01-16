@@ -1,12 +1,14 @@
+import App, { AppContext } from 'next/app';
 import { store } from '../redux/store';
 import { Provider } from 'react-redux';
 import NextNProgress from 'nextjs-progressbar';
 import config from 'react-reveal/globals';
+import { appWithTranslation } from '../i18n';
 import '../styles/styles.scss';
 
 config({ ssrFadeout: true });
 
-export default function App({ Component, pageProps }) {
+function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <NextNProgress
@@ -20,3 +22,7 @@ export default function App({ Component, pageProps }) {
     </Provider>
   );
 }
+
+MyApp.getInitialProps = async (appContext: AppContext) => ({ ...await App.getInitialProps(appContext) })
+
+export default appWithTranslation(MyApp);

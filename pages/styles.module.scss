@@ -2,7 +2,7 @@
 
 .intro {
   display: grid;
-  grid-template-columns: minmax(auto, 320px) 2fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas:
     "aina imgs description";
   gap: 64px;
@@ -31,7 +31,6 @@
 
 .description {
   grid-area: description;
-  max-width: 240px;
 }
 
 @media (max-width: $resolution-tablet) {
