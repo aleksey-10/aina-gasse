@@ -1,0 +1,45 @@
+@import 'styles/vars';
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(auto, 320px) 2fr 1fr;
+  grid-template-areas:
+    "aina imgs description";
+  gap: 64px;
+  align-items: center;
+  flex-wrap: wrap;
+  max-height: 100%;
+}
+
+.aina {
+  width: 100%;
+}
+
+.left {
+  grid-area: aina;
+  display: inline-flex;
+  align-items: center;
+}
+
+.model {
+  width: 100%;
+}
+
+.center {
+  grid-area: imgs;
+}
+
+.description {
+  grid-area: description;
+  max-width: 240px;
+}
+
+@media (max-width: $resolution-tablet) {
+  .intro {
+    grid-template-columns: 2fr 3fr;
+    grid-template-areas:
+      "aina imgs"
+      "description description";
+    gap: 16px;
+  }
+}

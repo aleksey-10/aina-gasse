@@ -1,5 +1,6 @@
 export interface LayoutState {
   isFirstLoadCompleted: boolean;
+  isPageLoading: boolean;
 }
 
 interface RootState {

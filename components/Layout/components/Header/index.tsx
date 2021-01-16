@@ -19,7 +19,7 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
   //const { t } = useTranslation();
-  const isFirstLoadCompleted: boolean = useSelector((state: RootState) => state.Layout.isFirstLoadCompleted);
+  const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
   const t = (data) => data;
 
   const handleScroll = useCallback(event => {
@@ -46,7 +46,7 @@ export const Header = () => {
   }, [handleScroll]);
 
   return (
-    <Fade when={isFirstLoadCompleted}>
+    <Fade when={!isPageLoading}>
       <header className={styles.header} style={headerStyles}>
         <Menu visible={menuOpen} onClose={() => setMenuOpen(false)} />
 

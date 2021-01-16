@@ -1,12 +1,16 @@
-import { FIRST_LOAD_COMPLETE } from "../types";
+import { FIRST_LOAD_COMPLETE, PAGE_LOADING } from "../types";
 
-interface FirstLoadComplete {
-  type: typeof FIRST_LOAD_COMPLETE;
+interface LoadType {
+  type: string;
   payload?: boolean;
 }
 
-export const setFirstLoadComplete = (value: boolean = true): FirstLoadComplete => (
+export const setFirstLoadComplete = (value: boolean = true): LoadType => (
   { type: FIRST_LOAD_COMPLETE, payload: value }
 );
 
-export type LayoutTypes = FirstLoadComplete;
+export const setPageLoading = (value: boolean = true): LoadType => (
+  { type: PAGE_LOADING, payload: value }
+);
+
+export type LayoutTypes = LoadType;

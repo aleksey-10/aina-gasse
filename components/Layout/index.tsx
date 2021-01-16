@@ -1,8 +1,9 @@
 import Head from 'next/head';
-import { ReactNode, useCallback } from 'react';
+import { useRouter } from 'next/router';
+import { ReactNode, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import RootState from '../../interfaces/RootState';
-import { setFirstLoadComplete } from '../../redux/Layout/actions';
+import RootState, { LayoutState } from '../../interfaces/RootState';
+import { setFirstLoadComplete, setPageLoading } from '../../redux/Layout/actions';
 import { Intro } from '../Intro';
 import { Header, Main, Footer } from "./components";
 import styles from './styles.module.scss';
@@ -11,11 +12,31 @@ interface Props {
   children: ReactNode;
   title: string;
   metaTags?: ReactNode[];
+  data?: any;
 }
 
-const Layout = ({ children, title, metaTags }: Props) => {
+const Layout = ({ children, title, metaTags, data }: Props) => {
   const dispatch = useDispatch();
-  const isFirstLoadCompleted: boolean = useSelector((state: RootState) => state.Layout.isFirstLoadCompleted);
+  const isFirstLoadCompleted = useSelector<RootState, boolean>(state => state.Layout.isFirstLoadCompleted);
+  const router = useRouter();
+
+  const routeChangeStart = () => {
+    dispatch(setPageLoading(true));
+  };
+
+  const routeChangeComplete = () => {
+    dispatch(setPageLoading(false));
+  };
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', routeChangeStart);
+    router.events.on('routeChangeComplete', routeChangeComplete);
+
+    return () => {
+      router.events.off('routeChangeStart', routeChangeStart);
+      router.events.off('routeChangeComplete', routeChangeComplete);
+    };
+  });
 
   const introHandler = useCallback(() => {
     dispatch(setFirstLoadComplete(true));
