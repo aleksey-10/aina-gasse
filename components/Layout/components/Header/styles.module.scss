@@ -38,6 +38,29 @@
   justify-content: flex-end;
 }
 
+.cart {
+  position: relative;
+
+  &-count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(4px, 10px);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: $color-dark;
+    color: $color-light;
+
+    font-size: 0.65em;
+    font-weight: bold;
+  }
+}
+
 @media (max-width: $resolution-mobile) {
   .left,
   .right {

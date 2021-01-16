@@ -1,33 +1,31 @@
 import { I18nContext } from "next-i18next";
-import { useContext, useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useCallback, useContext, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Product from "../../interfaces/Product";
 import RootState from "../../interfaces/RootState";
-import { toCamelCase } from "../../utils/Text";
+import { priceFormatter } from "../../utils/Text";
 import { Fade } from 'react-reveal';
+import { Button } from "../Button";
+import { addProduct } from '../../redux/Catalog/actions';
 import styles from './styles.module.scss';
 
-interface Props extends Product {}
+interface Props {
+  product: Product;
+}
 
-export const Card = ({ id, title, description, price, imageUrl, collection }: Props) => {
+export const Card = ({ product }: Props) => {
+  const { title, description, price, imageUrl } = product;
   const { i18n } = useContext(I18nContext);
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
+  const dispatch = useDispatch();
 
-  const priceToShow = useMemo(() => {
-    if (!price) {
-      return toCamelCase(i18n.t('Negotiable Price'));
-    }
-
-    if (typeof price === 'string') {
-      return price;
-    }
-
-    return `₴ ${price}`;
-  }, [price]);
+  const handleAddButton = useCallback(() => {
+    dispatch(addProduct(product));
+  }, [product]);
 
   return (
     <Fade when={!isPageLoading}>
-      <div>
+      <div className={styles.card}>
         <div className={styles.picture}>
           <img
             src={imageUrl}
@@ -35,9 +33,16 @@ export const Card = ({ id, title, description, price, imageUrl, collection }: Pr
             className={styles.img}
           />
         </div>
-        <h4>{title}</h4>
-        <p>{description}</p>
-        <h3>{priceToShow}</h3>
+        <div className={styles.info}>
+          <h5>{title}</h5>
+          <p className={styles.description}>{description}</p>
+          <h3 className={styles.price}>
+            {priceFormatter(price)}
+          </h3>
+          <Button onClick={handleAddButton} className={styles['buy-button']}>
+            {i18n.t('Add to cart')}
+          </Button>
+        </div>
       </div>
     </Fade>
   );

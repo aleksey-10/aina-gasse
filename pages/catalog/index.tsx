@@ -13,10 +13,12 @@ function Catalog({ t }: Props) {
   return (
     <Layout title={t('Catalog').toString()}>
       <div className="container">
-        <h2 className={styles.title}>{t('Catalog')}</h2>
-        <div className={styles['product-list']}>
-          {FAKE_CATALOG_DATA.map(product => <Card key={product.id} {...product} />)}
-        </div>
+        <section className="section">
+          <h2 className={styles.title}>{t('Catalog')}</h2>
+          <div className={styles['product-list']}>
+            {FAKE_CATALOG_DATA.map(product => <Card key={product.id} product={product} />)}
+          </div>
+        </section>
       </div>
     </Layout>
   );

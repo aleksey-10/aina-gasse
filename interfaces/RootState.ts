@@ -1,10 +1,15 @@
+import Product from "./Product";
+
 export interface LayoutState {
   isFirstLoadCompleted: boolean;
   isPageLoading: boolean;
 }
 
-interface RootState {
-  Layout: LayoutState;
-};
+export interface CatalogState {
+  data: Product[];
+}
 
-export default RootState;
+export default interface RootState {
+  Layout: LayoutState;
+  Catalog: CatalogState;
+};

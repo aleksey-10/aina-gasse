@@ -19,15 +19,14 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
   const { i18n } = useContext(I18nContext);
-
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
+  const cartProductsCount = useSelector<RootState, number>(state => state.Catalog.data.length);
 
   const handleScroll = useCallback(event => {
     const { scrollTop } = event.target;
     const hasInitialStyles = Boolean(Object.values(headerStyles).length);
 
     if ((scrollTop => 32 && hasInitialStyles) || (scrollTop < 32 && !hasInitialStyles)) {
-      console.log('change');
       setHeaderStyles(scrollTop > 32
         ? {}
         : {backgroundColor: 'transparent', boxShadow: 'none'}
@@ -72,8 +71,11 @@ export const Header = () => {
             </Link>
 
             <Link href="/cart">
-              <a>
-                <Button type="icon" className="lnr lnr-cart" />
+              <a className={styles.cart}>
+                <Button type="icon" className={`lnr lnr-cart ${styles['cart-button']}`} />
+                {Boolean(cartProductsCount) && (
+                  <div className={styles['cart-count']}>{cartProductsCount}</div>
+                )}
               </a>
             </Link>
           </div>

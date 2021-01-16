@@ -1,8 +1,33 @@
+@import 'styles/vars';
+@import 'styles/mixins';
+
+.card {
+  background-color: $color-light;
+  transform: translateY(0);
+  transition: box-shadow 0.25s;
+
+  &:hover {
+    @include box-shadow($spread: 8px);
+  }
+}
+
 .picture {
   max-height: 400px;
   overflow: hidden;
 }
 
+.info {
+  padding: 8px;
+}
+
 .img {
   width: 100%;
+}
+
+.description {
+  min-height: 48px;
+}
+
+.price {
+  margin-bottom: 8px;
 }
