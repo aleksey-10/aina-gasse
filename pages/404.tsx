@@ -15,9 +15,11 @@ export default function NotFound() {
           <h1>404</h1>
           <h3 style={{ marginBottom: 16 }}>{t('Page not found')}</h3>
           <Link href="/">
-            <Button type="link">
-              {t('Turn back to the main page')}
-            </Button>
+            <a>
+              <Button type="link">
+                {t('Turn back to the main page')}
+              </Button>
+            </a>
           </Link>
         </Fade>
       </section>

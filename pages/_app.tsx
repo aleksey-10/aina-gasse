@@ -9,12 +9,12 @@ config({ ssrFadeout: true });
 export default function App({ Component, pageProps }) {
   return (
     <Provider store={store}>
-      {/* <NextNProgress
+      <NextNProgress
         color="#c5abcc"
         startPosition={0.3}
         stopDelayMs={200}
         height={3}
-      /> */}
+      />
 
       <Component {...pageProps} />
     </Provider>
