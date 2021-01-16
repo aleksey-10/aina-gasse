@@ -1,0 +1,17 @@
+@import 'styles/vars';
+
+.title {
+  margin-bottom: 48px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+@media (max-width: $resolution-medium) {
+  .product-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -7,10 +7,6 @@ const localeSubpaths = {
 };
 
 module.exports = {
-  //i18n: {
-  //  locales: ['en-US', 'ru', 'ua'],
-  //  defaultLocale: 'ru',
-  //},
   rewrites: async () => nextI18NextRewrites(localeSubpaths),
   publicRuntimeConfig: { localeSubpaths },
 }
