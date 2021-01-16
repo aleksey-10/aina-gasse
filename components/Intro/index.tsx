@@ -9,7 +9,7 @@ interface Props {
   onIntroEnd(): void;
 }
 
-export const Intro = ({ loading, onIntroEnd }: Props) => {
+export const Intro = ({ onIntroEnd }: Props) => {
   const introDuration = 4000;
 
   useEffect(() => {
@@ -23,18 +23,19 @@ export const Intro = ({ loading, onIntroEnd }: Props) => {
       <div className={styles.intro}>
         <div className={styles.text}>
           <h1 className={styles.firstName}>
-            <Fade {...titleProps} left>
+            <Fade {...titleProps} left ssrFadeout={false}>
               Aina
             </Fade>
           </h1>
           <h1 className={styles.lastName}>
-            <Fade  {...titleProps} right>
+            <Fade {...titleProps} right ssrFadeout={false}>
               Gass&#201;
             </Fade>
           </h1>
         </div>
         <div className={styles.description}>
           <Fade
+            ssrFadeout={false}
             cascade
             duration={1500}
             bottom
@@ -43,12 +44,6 @@ export const Intro = ({ loading, onIntroEnd }: Props) => {
           </Fade>
         </div>
       </div>
-      {loading && (
-        <div className={styles.loader}>
-          {/*<Loader />*/}
-          Loading...
-        </div>
-      )}
     </div>
   );
 };
