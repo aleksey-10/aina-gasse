@@ -20,7 +20,7 @@ export const Header = () => {
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
   const { i18n } = useContext(I18nContext);
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
-  const cartProductsCount = useSelector<RootState, number>(state => state.Catalog.data.length);
+  const cartProductsCount = useSelector<RootState, number>(state => state.Catalog.cart.length);
 
   const handleScroll = useCallback(event => {
     const { scrollTop } = event.target;

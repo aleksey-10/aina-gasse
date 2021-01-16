@@ -7,6 +7,7 @@ export interface LayoutState {
 
 export interface CatalogState {
   data: Product[];
+  cart: Product[];
 }
 
 export default interface RootState {

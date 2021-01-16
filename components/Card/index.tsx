@@ -1,27 +1,22 @@
 import { I18nContext } from "next-i18next";
-import { useCallback, useContext, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useContext } from "react";
+import { useSelector } from "react-redux";
 import Product from "../../interfaces/Product";
 import RootState from "../../interfaces/RootState";
 import { priceFormatter } from "../../utils/Text";
 import { Fade } from 'react-reveal';
 import { Button } from "../Button";
-import { addProduct } from '../../redux/Catalog/actions';
 import styles from './styles.module.scss';
 
 interface Props {
   product: Product;
+  addProduct(id: number | string): void;
 }
 
-export const Card = ({ product }: Props) => {
-  const { title, description, price, imageUrl } = product;
+export const Card = ({ product, addProduct }: Props) => {
+  const { title, description, price, imageUrl, id } = product;
   const { i18n } = useContext(I18nContext);
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
-  const dispatch = useDispatch();
-
-  const handleAddButton = useCallback(() => {
-    dispatch(addProduct(product));
-  }, [product]);
 
   return (
     <Fade when={!isPageLoading}>
@@ -39,7 +34,7 @@ export const Card = ({ product }: Props) => {
           <h3 className={styles.price}>
             {priceFormatter(price)}
           </h3>
-          <Button onClick={handleAddButton} className={styles['buy-button']}>
+          <Button onClick={() => addProduct(id)} className={styles['buy-button']}>
             {i18n.t('Add to cart')}
           </Button>
         </div>
