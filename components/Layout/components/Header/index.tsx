@@ -2,11 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../../../Button';
 import { Menu } from './components/Menu';
-//import { ReactComponent as Bag } from '../../../../assets/icons/shopping-bag.svg';
+import  Bag from '../../../../assets/icons/shopping-bag.svg';
 import { Logo } from '../../../Logo';
 import { Fade } from 'react-reveal';
 //import { useTranslation } from 'react-i18next';
 import styles from './styles.module.scss';
+import { useSelector } from 'react-redux';
+import RootState from '../../../../interfaces/RootState';
 
 interface HeaderStyles {
   backgroundColor?: string;
@@ -17,9 +19,10 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
   //const { t } = useTranslation();
+  const isFirstLoadCompleted: boolean = useSelector((state: RootState) => state.Layout.isFirstLoadCompleted);
   const t = (data) => data;
 
-  const handleScroll = useCallback((event) => {
+  const handleScroll = useCallback(event => {
     const { scrollTop } = event.target;
     const hasInitialStyles = Boolean(Object.values(headerStyles).length);
 
@@ -43,7 +46,7 @@ export const Header = () => {
   }, [handleScroll]);
 
   return (
-    <Fade top>
+    <Fade when={isFirstLoadCompleted}>
       <header className={styles.header} style={headerStyles}>
         <Menu visible={menuOpen} onClose={() => setMenuOpen(false)} />
 
@@ -71,8 +74,8 @@ export const Header = () => {
             <Link href="/cart">
               <a>
                 <Button type="icon">
-                  {/*<Bag />*/}
-                  Bag
+                  b
+                  {/*<img src={Bag} />*/}
                 </Button>
               </a>
             </Link>

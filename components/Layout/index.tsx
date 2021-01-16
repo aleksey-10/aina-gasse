@@ -1,5 +1,8 @@
 import Head from 'next/head';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import RootState from '../../interfaces/RootState';
+import { setFirstLoadComplete } from '../../redux/Layout/actions';
 import { Intro } from '../Intro';
 import { Header, Main, Footer } from "./components";
 import styles from './styles.module.scss';
@@ -11,12 +14,20 @@ interface Props {
 }
 
 const Layout = ({ children, title, metaTags }: Props) => {
+  const dispatch = useDispatch();
+  const isFirstLoadCompleted: boolean = useSelector((state: RootState) => state.Layout.isFirstLoadCompleted);
+
+  const introHandler = useCallback(() => {
+    dispatch(setFirstLoadComplete(true));
+  }, []);
+
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
       <div className={styles.layout}>
+        {!isFirstLoadCompleted && <Intro onIntroEnd={introHandler}/>}
         <Header />
         <Main>
           {children}

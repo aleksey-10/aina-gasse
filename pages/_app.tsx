@@ -1,21 +1,23 @@
-import { useState } from 'react';
-import { Intro } from '../components/Intro';
-import { Provider } from 'react-redux';
 import { store } from '../redux/store';
+import { Provider } from 'react-redux';
+import NextNProgress from 'nextjs-progressbar';
 import config from 'react-reveal/globals';
 import '../styles/styles.scss';
 
 config({ ssrFadeout: true });
 
-function App({ Component, pageProps }) {
-  const [isIntroShown, setIntroShown] = useState<boolean>(false);
-
+export default function App({ Component, pageProps }) {
   return (
-    <Provider store={store}>
-      {!isIntroShown && <Intro onIntroEnd={() => setIntroShown(true)}/>}
-      <Component {...pageProps} />
-    </Provider>
+    <>
+      <NextNProgress
+        color="#c5abcc"
+        startPosition={0.3}
+        stopDelayMs={200}
+        height={3}
+      />
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </>
   );
 }
-
-export default App;
