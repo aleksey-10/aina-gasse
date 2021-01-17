@@ -9,4 +9,7 @@ const localeSubpaths = {
 module.exports = {
   rewrites: async () => nextI18NextRewrites(localeSubpaths),
   publicRuntimeConfig: { localeSubpaths },
+  env: {
+    API_PATH: 'http://localhost:3000/api',
+  },
 }

@@ -39,9 +39,14 @@ function Catalog({ t, productsFromServer }: Props) {
   );
 };
 
-Catalog.getInitialProps = async () => ({
-  namespacesRequired: ['common'],
-  productsFromServer: FAKE_CATALOG_DATA,
-});
+Catalog.getInitialProps = async () => {
+  const response = await fetch(`${process.env.API_PATH}/products`);
+  const productsFromServer = await response.json();
+
+  return {
+    namespacesRequired: ['common'],
+    productsFromServer,
+  }
+};
 
 export default withTranslation('common')(Catalog);
