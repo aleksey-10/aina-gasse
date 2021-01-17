@@ -1,5 +1,5 @@
 import { I18nContext } from "next-i18next";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useSelector } from "react-redux";
 import Product from "../../interfaces/Product";
 import RootState from "../../interfaces/RootState";
@@ -17,15 +17,17 @@ export const Card = ({ product, addProduct }: Props) => {
   const { title, description, price, imageUrl, id } = product;
   const { i18n } = useContext(I18nContext);
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
+  const [imgLoaded, setImgLoaded] = useState<boolean>(false);
 
   return (
-    <Fade when={!isPageLoading}>
+    <Fade when={!isPageLoading && imgLoaded}>
       <div className={styles.card}>
         <div className={styles.picture}>
           <img
             src={imageUrl}
             alt={title}
             className={styles.img}
+            onLoad={() => setImgLoaded(true)}
           />
         </div>
         <div className={styles.info}>

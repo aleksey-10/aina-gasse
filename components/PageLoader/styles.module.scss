@@ -1,0 +1,11 @@
+.loader {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+
+  background: #FFFFFF;
+  background: -moz-linear-gradient(left, #FFFFFF 0%, #FEF8FF 50%, #FBEEFF 100%);
+  background: -webkit-linear-gradient(left, #FFFFFF 0%, #FEF8FF 50%, #FBEEFF 100%);
+  background: linear-gradient(to right, #FFFFFF 0%, #FEF8FF 50%, #FBEEFF 100%)
+}
