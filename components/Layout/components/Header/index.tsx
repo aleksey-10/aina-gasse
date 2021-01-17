@@ -34,7 +34,7 @@ export const Header = () => {
     }
   }, [isFirstLoadCompleted]);
 
-  const handleScroll = useCallback(event => {
+  const handleScroll = useCallback((event) => {
     const { scrollTop } = event.target;
     const hasInitialStyles = Boolean(Object.values(headerStyles).length);
 

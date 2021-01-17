@@ -10,6 +10,7 @@ const localeSubpaths = {
 const NextI18NextInstance = new NextI18Next({
   browserLanguageDetection: false,
   ns: ['common'],
+  defaultNS: 'common',
   fallbackLng: 'ru',
   defaultLanguage: 'ru',
   otherLanguages: ['en', 'ua', 'ru'],

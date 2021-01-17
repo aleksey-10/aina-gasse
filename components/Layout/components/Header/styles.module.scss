@@ -8,6 +8,7 @@
   width: 100%;
   background-color: rgba($color-light, 0.95);
   @include box-shadow;
+  transition: background-color 0.35s;
 }
 
 .content {
@@ -58,7 +59,14 @@
 
     font-size: 0.65em;
     font-weight: bold;
+    transition: background-color 0.2s;
   }
+
+  // &:hover {
+  //   .cart-count {
+  //     background-color: $color-primary;
+  //   }
+  // }
 }
 
 @media (max-width: $resolution-mobile) {
