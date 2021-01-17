@@ -47,12 +47,3 @@ export const Intro = ({ onIntroEnd }: Props) => {
     </div>
   );
 };
-
-Intro.defaultProps = {
-  loading: false,
-};
-
-Intro.propTypes = {
-  onIntroEnd: PropTypes.func,
-  loading: PropTypes.bool,
-};

@@ -40,7 +40,7 @@ function Catalog({ t, productsFromServer }: Props) {
 };
 
 Catalog.getInitialProps = async () => {
-  const response = await fetch(`${process.env.API_PATH}/products`);
+  const response = await fetch(`${process.env.API_URL}/products`);
   const productsFromServer = await response.json();
 
   return {

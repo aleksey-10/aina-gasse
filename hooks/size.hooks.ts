@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-export const useSize = (size, { sm, md, lg }) => {
+export const useSize = (size: string, { sm, md, lg }) => {
   const [s, setS] = useState(md);
 
   const setSize = useCallback(() => {

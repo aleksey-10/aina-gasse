@@ -69,8 +69,3 @@ export const Menu = ({ visible, onClose }: Props) => {
     </div>
   );
 };
-
-Menu.propTypes = {
-  visible: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-};
