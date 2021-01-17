@@ -2,13 +2,14 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../../../Button';
 import { Menu } from './components/Menu';
-import  Bag from '../../../../assets/icons/shopping-bag.svg';
+// import  Bag from '../../../../assets/icons/shopping-bag.svg';
 import { Logo } from '../../../Logo';
 import { Fade } from 'react-reveal';
 import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
-import RootState from '../../../../interfaces/RootState';
+import RootState, { LayoutState } from '../../../../interfaces/RootState';
 import { I18nContext } from 'next-i18next';
+import { useCatalog } from '../../../../hooks/catalog.hooks';
 
 interface HeaderStyles {
   backgroundColor?: string;
@@ -18,9 +19,20 @@ interface HeaderStyles {
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
+
   const { i18n } = useContext(I18nContext);
-  const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
+
+  const { isPageLoading, isFirstLoadCompleted } = useSelector<RootState, LayoutState>(state => state.Layout);
   const cartProductsCount = useSelector<RootState, number>(state => state.Catalog.cart.length);
+
+  const { loadCart } = useCatalog();
+
+  useEffect(() => {
+    if (!isFirstLoadCompleted) {
+      console.log('load cart');
+      loadCart();
+    }
+  }, [isFirstLoadCompleted]);
 
   const handleScroll = useCallback(event => {
     const { scrollTop } = event.target;

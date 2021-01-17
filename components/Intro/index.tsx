@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Fade } from 'react-reveal';
 import styles from './styles.module.scss';
 //import { Loader } from '../Loader';
