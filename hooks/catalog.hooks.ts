@@ -7,7 +7,7 @@ import { fillCart, fillCatalog } from "../redux/Catalog/actions";
 
 interface ReturnedType {
   cart: CartItem[];
-  productsInCart: number;
+  cartProductsCount: number;
   products: Product[];
   addProduct(id: number | string): void;
   fillCatalog(products: Product[]): void;
@@ -51,13 +51,13 @@ export const useCatalog = (): ReturnedType => {
     localStorage.setItem('cart', JSON.stringify(newCart));
   }, [cart, products]);
 
-  const productsInCart = useMemo(() => {
+  const cartProductsCount = useMemo(() => {
     return cart.reduce((acc, { count }) => acc + count, 0);
   }, [cart]);
 
   return {
     cart,
-    productsInCart,
+    cartProductsCount,
     products,
     addProduct: handleAddProduct,
     fillCatalog: handleFillCatalog,

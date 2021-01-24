@@ -52,9 +52,11 @@ export const Card = ({ product, addProduct, className }: Props) => {
               {priceFormatter(price)}
             </h3>
             {addProduct && (
-              <Button onClick={() => addProduct(id)} className={styles['buy-button']}>
-                {i18n.t('Add to cart')}
-              </Button>
+              <div className={styles['buy-button']}>
+                <Button onClick={() => addProduct(id)}>
+                  {i18n.t('Add to cart')}
+                </Button>
+              </div>
             )}
           </div>
         </div>

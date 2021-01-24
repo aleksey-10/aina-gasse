@@ -21,7 +21,7 @@ export const Header = () => {
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
   const { i18n } = useContext(I18nContext);
   const { isPageLoading, isFirstLoadCompleted } = useSelector<RootState, LayoutState>(state => state.Layout);
-  const { loadCart, productsInCart } = useCatalog();
+  const { loadCart, cartProductsCount } = useCatalog();
 
   useEffect(() => {
     if (!isFirstLoadCompleted) {
@@ -80,8 +80,8 @@ export const Header = () => {
             <Link href="/checkout">
               <a className={styles.cart}>
                 <Button type="icon" className={`lnr lnr-cart ${styles['cart-button']}`} />
-                {Boolean(productsInCart) && (
-                  <div className={styles['cart-count']}>{productsInCart}</div>
+                {Boolean(cartProductsCount) && (
+                  <div className={styles['cart-count']}>{cartProductsCount}</div>
                 )}
               </a>
             </Link>
