@@ -1,5 +1,4 @@
 import React, { useCallback, useContext, useEffect, useState } from 'react';
-import Link from 'next/link';
 import { Button } from '../../../Button';
 import { Menu } from './components/Menu';
 // import  Bag from '../../../../assets/icons/shopping-bag.svg';
@@ -10,6 +9,7 @@ import { useSelector } from 'react-redux';
 import RootState, { LayoutState } from '../../../../interfaces/RootState';
 import { I18nContext } from 'next-i18next';
 import { useCatalog } from '../../../../hooks/catalog.hooks';
+import { Link } from '../../../../i18n';
 
 interface HeaderStyles {
   backgroundColor?: string;
@@ -19,17 +19,12 @@ interface HeaderStyles {
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
-
   const { i18n } = useContext(I18nContext);
-
   const { isPageLoading, isFirstLoadCompleted } = useSelector<RootState, LayoutState>(state => state.Layout);
-  const cartProductsCount = useSelector<RootState, number>(state => state.Catalog.cart.length);
-
-  const { loadCart } = useCatalog();
+  const { loadCart, productsInCart } = useCatalog();
 
   useEffect(() => {
     if (!isFirstLoadCompleted) {
-      console.log('load cart');
       loadCart();
     }
   }, [isFirstLoadCompleted]);
@@ -82,11 +77,11 @@ export const Header = () => {
               </a>
             </Link>
 
-            <Link href="/cart">
+            <Link href="/checkout">
               <a className={styles.cart}>
                 <Button type="icon" className={`lnr lnr-cart ${styles['cart-button']}`} />
-                {Boolean(cartProductsCount) && (
-                  <div className={styles['cart-count']}>{cartProductsCount}</div>
+                {Boolean(productsInCart) && (
+                  <div className={styles['cart-count']}>{productsInCart}</div>
                 )}
               </a>
             </Link>

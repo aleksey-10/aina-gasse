@@ -1,6 +1,6 @@
 //import { Fade } from 'react-reveal';
-import Link from 'next/link';
 import { useMenu } from '../../../../hooks/menu.hooks';
+import { Link } from '../../../../i18n';
 import styles from './styles.module.scss';
 
 export const Footer = () => {

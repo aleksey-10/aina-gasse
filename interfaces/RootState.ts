@@ -1,3 +1,4 @@
+import CartItem from "./Cart";
 import Product from "./Product";
 
 export interface LayoutState {
@@ -7,7 +8,7 @@ export interface LayoutState {
 
 export interface CatalogState {
   data: Product[];
-  cart: Product[];
+  cart: CartItem[];
 }
 
 export default interface RootState {

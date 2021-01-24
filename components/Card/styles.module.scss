@@ -2,13 +2,24 @@
 @import 'styles/mixins';
 
 .card {
+  display: flex;
+  flex-direction: column;
   background-color: $color-light;
   transform: translateY(0);
   transition: box-shadow 0.25s;
 
   &:hover {
     @include box-shadow($spread: 8px);
+
+    .buy-button {
+      opacity: 1;
+    }
   }
+}
+
+.buy-button {
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
 .picture {
@@ -17,6 +28,10 @@
 }
 
 .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
   padding: 8px;
 }
 
@@ -29,5 +44,18 @@
 }
 
 .price {
-  margin-bottom: 8px;
+  margin: 8px 16px 8px 0;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: $resolution-tablet) {
+  .buy-button {
+    opacity: 1;
+  }
 }

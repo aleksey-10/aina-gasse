@@ -1,5 +1,5 @@
 import { I18nContext } from "next-i18next";
-import { useContext, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import Product from "../../interfaces/Product";
 import RootState from "../../interfaces/RootState";
@@ -7,21 +7,33 @@ import { priceFormatter } from "../../utils/Text";
 import { Fade } from 'react-reveal';
 import { Button } from "../Button";
 import styles from './styles.module.scss';
+import CartItem from "../../interfaces/Cart";
 
 interface Props {
   product: Product;
-  addProduct(id: number | string): void;
+  addProduct?(id: number | string): void;
+  className?: string;
 }
 
-export const Card = ({ product, addProduct }: Props) => {
+export const Card = ({ product, addProduct, className }: Props) => {
   const { title, description, price, imageUrl, id } = product;
   const { i18n } = useContext(I18nContext);
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
   const [imgLoaded, setImgLoaded] = useState<boolean>(false);
 
+  const classNames = useMemo(() => {
+    const classes = [styles.card];
+
+    if (className) {
+      classes.push(className);
+    }
+
+    return classes.join(' ');
+  }, [className]);
+
   return (
     <Fade when={!isPageLoading && imgLoaded}>
-      <div className={styles.card}>
+      <div className={classNames}>
         <div className={styles.picture}>
           <img
             src={imageUrl}
@@ -31,14 +43,20 @@ export const Card = ({ product, addProduct }: Props) => {
           />
         </div>
         <div className={styles.info}>
-          <h5>{title}</h5>
-          <p className={styles.description}>{description}</p>
-          <h3 className={styles.price}>
-            {priceFormatter(price)}
-          </h3>
-          <Button onClick={() => addProduct(id)} className={styles['buy-button']}>
-            {i18n.t('Add to cart')}
-          </Button>
+          <div>
+            <h5>{title}</h5>
+            <p className={styles.description}>{description}</p>
+          </div>
+          <div className={styles.bottom}>
+            <h3 className={styles.price}>
+              {priceFormatter(price)}
+            </h3>
+            {addProduct && (
+              <Button onClick={() => addProduct(id)} className={styles['buy-button']}>
+                {i18n.t('Add to cart')}
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </Fade>

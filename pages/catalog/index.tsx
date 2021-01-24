@@ -4,7 +4,6 @@ import { Layout } from "../../components/Layout";
 import { useCatalog } from "../../hooks/catalog.hooks";
 import { withTranslation } from "../../i18n";
 import Product from "../../interfaces/Product";
-import { FAKE_CATALOG_DATA } from "../../utils/Catalog";
 import styles from './styles.module.scss';
 
 interface Props {

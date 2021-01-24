@@ -21,5 +21,11 @@ export const FAKE_CATALOG_DATA: Product[] = [
     description: 'Кожаные парки на меху, любовь с первого взгляда❤️',
     price: 24500,
     imageUrl: 'https://scontent-iev1-1.cdninstagram.com/v/t51.2885-15/e35/s1080x1080/130833260_209043810753271_3963369155920081084_n.jpg?_nc_ht=scontent-iev1-1.cdninstagram.com&_nc_cat=107&_nc_ohc=gKVhUYa4230AX90BmTq&tp=1&oh=0f6e9e20937b4a936c9e0213545807ec&oe=602E9C66',
-  }
+  },
+  {
+    id: 4,
+    title: 'Wear',
+    price: 15500,
+    imageUrl: 'https://scontent-iev1-1.cdninstagram.com/v/t51.2885-15/e35/121001451_616514809015220_2111818148743866308_n.jpg?_nc_ht=scontent-iev1-1.cdninstagram.com&_nc_cat=108&_nc_ohc=SRTeTeLmXzoAX_Xe2U9&tp=1&oh=30ef4acbfac5c868f019e3f8f5ba922c&oe=60381016',
+  },
 ];

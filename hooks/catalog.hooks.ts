@@ -1,11 +1,21 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../interfaces/Product";
+import CartItem from '../interfaces/Cart';
 import RootState from "../interfaces/RootState";
 import { fillCart, fillCatalog } from "../redux/Catalog/actions";
 
-export const useCatalog = () => {
-  const cart = useSelector<RootState, Product[]>(state => state.Catalog.cart);
+interface ReturnedType {
+  cart: CartItem[];
+  productsInCart: number;
+  products: Product[];
+  addProduct(id: number | string): void;
+  fillCatalog(products: Product[]): void;
+  loadCart(): void;
+}
+
+export const useCatalog = (): ReturnedType => {
+  const cart = useSelector<RootState, CartItem[]>(state => state.Catalog.cart);
   const products = useSelector<RootState, Product[]>(state => state.Catalog.data);
   const dispatch = useDispatch();
 
@@ -22,14 +32,32 @@ export const useCatalog = () => {
   };
 
   const handleAddProduct = useCallback((id: number | string) => {
-    const newCart = [...cart, { ...products.find(product => product.id === id)}];
+    let newCart = [];
+    const alreadyInCart = cart.some(product => product.id === id);
+
+    if (alreadyInCart) {
+      newCart = cart.map(product => {
+        if (product.id === id) {
+          return {...product, count: product.count + 1};
+        }
+
+        return product;
+      });
+    } else {
+      newCart = [...cart, { ...products.find(product => product.id === id), count: 1 }];
+    }
 
     dispatch(fillCart(newCart));
     localStorage.setItem('cart', JSON.stringify(newCart));
   }, [cart, products]);
 
+  const productsInCart = useMemo(() => {
+    return cart.reduce((acc, { count }) => acc + count, 0);
+  }, [cart]);
+
   return {
     cart,
+    productsInCart,
     products,
     addProduct: handleAddProduct,
     fillCatalog: handleFillCatalog,

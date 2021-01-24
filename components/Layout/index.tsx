@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import RootState, { LayoutState } from '../../interfaces/RootState';
 import { setFirstLoadComplete, setPageLoading } from '../../redux/Layout/actions';
 import { Intro } from '../Intro';
-import { Header, Main, Footer } from "./components";
+import { Header, Main, Footer, Empty } from "./components";
 import styles from './styles.module.scss';
 
 interface Props {
@@ -62,5 +62,6 @@ const Layout = ({ children, title, metaTags, data }: Props) => {
 Layout.Header = Header;
 Layout.Main = Main;
 Layout.Footer = Footer;
+Layout.Empty = Empty;
 
 export { Layout };

@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import Link from 'next/link';
 import { Button } from '../../../../../Button';
 import { Language } from '../Language';
 import { useMenu } from '../../../../../../hooks/menu.hooks';
 import styles from './styles.module.scss';
+import { Link } from '../../../../../../i18n';
 
 interface Props {
   visible: boolean;
