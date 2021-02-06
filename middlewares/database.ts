@@ -1,15 +1,15 @@
 import mongoose from 'mongoose';
-import { NextApiHandler, NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // Get your connection string from .env.local
 
-const MONGODB_CONN_STR = 'mongodb+srv://aleksey:qwerty_20@cluster0.uso1o.mongodb.net/aina?retryWrites=true&w=majority';
+const MONGODB_URI = process.env.MONGODB_URI;
 
 const databaseMiddleware = async (req: NextApiRequest, res: NextApiResponse, next) => {
 
   try {
     if (!global.mongoose) {
-      global.mongoose = await mongoose.connect(MONGODB_CONN_STR, {
+      global.mongoose = await mongoose.connect(MONGODB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
