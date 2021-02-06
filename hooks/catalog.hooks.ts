@@ -33,18 +33,18 @@ export const useCatalog = (): ReturnedType => {
 
   const handleAddProduct = useCallback((id: number | string) => {
     let newCart = [];
-    const alreadyInCart = cart.some(product => product.id === id);
+    const alreadyInCart = cart.some(product => product._id === id);
 
     if (alreadyInCart) {
       newCart = cart.map(product => {
-        if (product.id === id) {
+        if (product._id === id) {
           return {...product, count: product.count + 1};
         }
 
         return product;
       });
     } else {
-      newCart = [...cart, { ...products.find(product => product.id === id), count: 1 }];
+      newCart = [...cart, { ...products.find(product => product._id === id), count: 1 }];
     }
 
     dispatch(fillCart(newCart));

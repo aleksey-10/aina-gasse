@@ -24,7 +24,7 @@ const Checkout = ({ t }: Props) => {
         ) : (
           <div className={`container ${styles.products}`}>
             {cart.map(product => (
-              <div key={product.id}>
+              <div key={product._id}>
                 <div>{t('Count')}: {product.count}</div>
                 <Card
                   className={styles.card}

@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const Card = ({ product, addProduct, className }: Props) => {
-  const { title, description, price, imageUrl, id } = product;
+  const { title, description, price, imageUrl, _id } = product;
   const { i18n } = useContext(I18nContext);
   const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
   const [imgLoaded, setImgLoaded] = useState<boolean>(false);
@@ -53,7 +53,7 @@ export const Card = ({ product, addProduct, className }: Props) => {
             </h3>
             {addProduct && (
               <div className={styles['buy-button']}>
-                <Button onClick={() => addProduct(id)}>
+                <Button onClick={() => addProduct(_id)}>
                   {i18n.t('Add to cart')}
                 </Button>
               </div>

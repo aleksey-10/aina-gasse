@@ -19,7 +19,15 @@ function Catalog({ t, productsFromServer }: Props) {
 
   useEffect(() => {
     fillCatalog(productsFromServer);
-  });
+
+    // fetch(`${process.env.API_URL}/products`, {
+    //   method: 'POST',
+    //   body: JSON.stringify(productsFromServer),
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // })
+  }, []);
 
   const handleAddProduct = useCallback((id) => {
     addProduct(id);
@@ -48,7 +56,7 @@ function Catalog({ t, productsFromServer }: Props) {
           <div className={styles['product-list']}>
             {products.map(product => (
               <Card
-                key={product.id}
+                key={product._id}
                 product={product}
                 addProduct={handleAddProduct}
               />)
