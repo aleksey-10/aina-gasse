@@ -10,6 +10,6 @@ module.exports = {
   rewrites: async () => nextI18NextRewrites(localeSubpaths),
   publicRuntimeConfig: { localeSubpaths },
   env: {
-    API_URL: 'https://aina-gasse.vercel.app/api',
+    API_URL: 'http://localhost:3000/api',
   },
 }
