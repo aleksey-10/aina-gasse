@@ -3,9 +3,12 @@ import { useRouter } from 'next/router';
 import { ReactNode, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RootState from '../../interfaces/RootState';
-import { setFirstLoadComplete, setPageLoading } from '../../redux/Layout/actions';
+import {
+  setFirstLoadComplete,
+  setPageLoading,
+} from '../../redux/Layout/actions';
 import { Intro } from '../Intro';
-import { Header, Main, Footer, Empty } from "./components";
+import { Header, Main, Footer, Empty } from './components';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -16,7 +19,9 @@ interface Props {
 
 const Layout = ({ children, title, metaTags }: Props) => {
   const dispatch = useDispatch();
-  const isFirstLoadCompleted = useSelector<RootState, boolean>(state => state.Layout.isFirstLoadCompleted);
+  const isFirstLoadCompleted = useSelector<RootState, boolean>(
+    (state) => state.Layout.isFirstLoadCompleted,
+  );
   const router = useRouter();
 
   const routeChangeStart = () => {
@@ -39,7 +44,7 @@ const Layout = ({ children, title, metaTags }: Props) => {
 
   const introHandler = useCallback(() => {
     dispatch(setFirstLoadComplete(true));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -48,11 +53,9 @@ const Layout = ({ children, title, metaTags }: Props) => {
         {metaTags}
       </Head>
       <div className={styles.layout}>
-        {!isFirstLoadCompleted && <Intro onIntroEnd={introHandler}/>}
+        {!isFirstLoadCompleted && <Intro onIntroEnd={introHandler} />}
         <Header />
-        <Main>
-          {children}
-        </Main>
+        <Main>{children}</Main>
         <Footer />
       </div>
     </>
