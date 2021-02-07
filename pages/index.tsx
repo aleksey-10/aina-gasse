@@ -8,15 +8,12 @@ import { ReactNode } from 'react';
 
 const metaTags = [
   <meta property="og:title" content="Aina Gasse" key="title" />,
+  <meta name="description" content="Дизайнерская одежда" key="description" />,
+  <meta name="site" content="ainagasse" key="site" />,
   <meta
-    property="description"
-    content="Дизайнерская одежда"
+    name="keywords"
+    content="Одежда от дизайнера, Aina Gasse, Бред одежды"
     key="description"
-  />,
-  <meta
-    property="og:description"
-    content="Дизайнерская одежда"
-    key="ogdescription"
   />,
 ];
 
