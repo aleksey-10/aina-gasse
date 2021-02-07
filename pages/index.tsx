@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import RootState from '../interfaces/RootState';
 import { withTranslation } from '../i18n';
+import { ReactNode } from 'react';
 
 const metaTags = [
   <meta property="og:title" content="Aina Gasse" key="title" />,
