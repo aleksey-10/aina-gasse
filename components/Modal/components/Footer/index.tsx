@@ -13,7 +13,5 @@ export const ModalFooter = ({ children, align }: Props) => {
     [styles[align]]: align,
   });
 
-  return (
-    <footer className={classNames}>{children}</footer>
-  );
+  return <footer className={classNames}>{children}</footer>;
 };

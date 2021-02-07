@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { ReactNode, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import RootState, { LayoutState } from '../../interfaces/RootState';
+import RootState from '../../interfaces/RootState';
 import { setFirstLoadComplete, setPageLoading } from '../../redux/Layout/actions';
 import { Intro } from '../Intro';
 import { Header, Main, Footer, Empty } from "./components";
@@ -12,10 +12,9 @@ interface Props {
   children: ReactNode;
   title: string;
   metaTags?: ReactNode[];
-  data?: any;
 }
 
-const Layout = ({ children, title, metaTags, data }: Props) => {
+const Layout = ({ children, title, metaTags }: Props) => {
   const dispatch = useDispatch();
   const isFirstLoadCompleted = useSelector<RootState, boolean>(state => state.Layout.isFirstLoadCompleted);
   const router = useRouter();
@@ -46,6 +45,7 @@ const Layout = ({ children, title, metaTags, data }: Props) => {
     <>
       <Head>
         <title>{title}</title>
+        {metaTags}
       </Head>
       <div className={styles.layout}>
         {!isFirstLoadCompleted && <Intro onIntroEnd={introHandler}/>}

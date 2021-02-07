@@ -13,7 +13,7 @@ export const Intro = ({ onIntroEnd }: Props) => {
 
   useEffect(() => {
     setTimeout(onIntroEnd, introDuration);
-  })
+  });
 
   const titleProps = { big: true, cascade: true, duration: 1500, delay: 300 };
 
@@ -33,12 +33,7 @@ export const Intro = ({ onIntroEnd }: Props) => {
           </h1>
         </div>
         <div className={styles.description}>
-          <Fade
-            cascade
-            duration={1500}
-            bottom
-            ssrReveal
-          >
+          <Fade cascade duration={1500} bottom ssrReveal>
             Designer
           </Fade>
         </div>

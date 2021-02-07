@@ -1,13 +1,12 @@
-import { I18nContext } from "next-i18next";
-import { useContext, useMemo, useState } from "react";
-import { useSelector } from "react-redux";
-import Product from "../../interfaces/Product";
-import RootState from "../../interfaces/RootState";
-import { priceFormatter } from "../../utils/Text";
+import { I18nContext } from 'next-i18next';
+import { useContext, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import Product from '../../interfaces/Product';
+import RootState from '../../interfaces/RootState';
+import { priceFormatter } from '../../utils/Text';
 import { Fade } from 'react-reveal';
-import { Button } from "../Button";
+import { Button } from '../Button';
 import styles from './styles.module.scss';
-import CartItem from "../../interfaces/Cart";
 
 interface Props {
   product: Product;
@@ -18,7 +17,9 @@ interface Props {
 export const Card = ({ product, addProduct, className }: Props) => {
   const { title, description, price, imageUrl, _id } = product;
   const { i18n } = useContext(I18nContext);
-  const isPageLoading = useSelector<RootState, boolean>(state => state.Layout.isPageLoading);
+  const isPageLoading = useSelector<RootState, boolean>(
+    (state) => state.Layout.isPageLoading,
+  );
   const [imgLoaded, setImgLoaded] = useState<boolean>(false);
 
   const classNames = useMemo(() => {
@@ -48,9 +49,7 @@ export const Card = ({ product, addProduct, className }: Props) => {
             <p className={styles.description}>{description}</p>
           </div>
           <div className={styles.bottom}>
-            <h3 className={styles.price}>
-              {priceFormatter(price)}
-            </h3>
+            <h3 className={styles.price}>{priceFormatter(price)}</h3>
             {addProduct && (
               <div className={styles['buy-button']}>
                 <Button onClick={() => addProduct(_id)}>

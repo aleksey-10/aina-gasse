@@ -9,12 +9,14 @@ interface CustomNodeJsGlobal extends NodeJS.Global {
 // Tell Typescript to use this type on the globally scoped `global` variable.
 declare const global: CustomNodeJsGlobal;
 
-
 // Get your connection string from .env.local
 const MONGODB_URI = process.env.MONGODB_URI;
 
-const databaseMiddleware = async (req: NextApiRequest, res: NextApiResponse, next) => {
-
+const databaseMiddleware = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+  next,
+) => {
   try {
     if (!global.mongoose) {
       global.mongoose = await mongoose.connect(MONGODB_URI, {
@@ -23,8 +25,7 @@ const databaseMiddleware = async (req: NextApiRequest, res: NextApiResponse, nex
         useFindAndModify: false,
       });
     }
-  }
-  catch (ex) {
+  } catch (ex) {
     console.error(ex);
   }
 
@@ -33,7 +34,6 @@ const databaseMiddleware = async (req: NextApiRequest, res: NextApiResponse, nex
   // req.mongoose = global.mongoose;
 
   return next();
-
 };
 
 export default databaseMiddleware;

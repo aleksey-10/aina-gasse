@@ -8,14 +8,17 @@ import styles from './styles.module.scss';
 export const Language = ({ onChange }) => {
   const { i18n } = useContext(I18nContext);
 
-  const handleChangeLanguage = useCallback((key) => {
-    i18n.changeLanguage(key);
-    onChange();
-  }, [i18n, onChange]);
+  const handleChangeLanguage = useCallback(
+    (key) => {
+      i18n.changeLanguage(key);
+      onChange();
+    },
+    [i18n, onChange],
+  );
 
   return (
     <ul className={styles.list}>
-      {LANGUAGES.map(key => (
+      {LANGUAGES.map((key) => (
         <li key={key} className={styles.item}>
           <Button
             className={styles.button}
@@ -28,5 +31,5 @@ export const Language = ({ onChange }) => {
         </li>
       ))}
     </ul>
-  )
+  );
 };

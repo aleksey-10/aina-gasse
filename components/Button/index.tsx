@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import classnames from 'classnames';
 import styles from './styles.module.scss';
 
@@ -10,12 +10,18 @@ interface Props {
   type?: string;
   className?: string;
   isActive?: boolean;
-};
+}
 
-export const Button = ({ children, onClick, type = 'default', className = '', isActive = false }: Props) => {
+export const Button: FC<Props> = ({
+  children,
+  onClick,
+  type = 'default',
+  className = '',
+  isActive = false,
+}) => {
   const classNames = classnames({
     [styles.button]: true,
-    [styles[`button--${type}`]]: TYPES.some(typeName => typeName === type),
+    [styles[`button--${type}`]]: TYPES.some((typeName) => typeName === type),
     [className]: className,
     [styles.active]: isActive,
   });

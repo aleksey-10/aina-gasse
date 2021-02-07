@@ -7,7 +7,10 @@ const initialState: LayoutState = {
   isPageLoading: true,
 };
 
-export default function Layout(state: LayoutState = initialState, action: LayoutTypes) {
+export default function Layout(
+  state: LayoutState = initialState,
+  action: LayoutTypes,
+) {
   switch (action.type) {
     case FIRST_LOAD_COMPLETE:
       return {

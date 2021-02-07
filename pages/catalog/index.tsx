@@ -1,11 +1,11 @@
-import { ReactNode, useCallback, useEffect, useState } from "react";
-import { Button } from "../../components/Button";
-import { Card } from "../../components/Card";
-import { Layout } from "../../components/Layout";
-import Modal from "../../components/Modal";
-import { useCatalog } from "../../hooks/catalog.hooks";
-import { withTranslation } from "../../i18n";
-import Product from "../../interfaces/Product";
+import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { Button } from '../../components/Button';
+import { Card } from '../../components/Card';
+import { Layout } from '../../components/Layout';
+import Modal from '../../components/Modal';
+import { useCatalog } from '../../hooks/catalog.hooks';
+import { withTranslation } from '../../i18n';
+import Product from '../../interfaces/Product';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -27,12 +27,16 @@ function Catalog({ t, productsFromServer }: Props) {
     //     'Content-Type': 'application/json',
     //   },
     // })
-  }, []);
+  }, [productsFromServer, fillCatalog]);
 
-  const handleAddProduct = useCallback((id) => {
-    addProduct(id);
-    setModalVisible(true);
-  }, [addProduct, setModalVisible]);
+  const handleAddProduct = useCallback(
+    (id) => {
+      addProduct(id);
+
+      setModalVisible(true);
+    },
+    [addProduct, setModalVisible],
+  );
 
   const handleCloseModal = useCallback(() => {
     setModalVisible(false);
@@ -41,32 +45,28 @@ function Catalog({ t, productsFromServer }: Props) {
   return (
     <Layout title={t('Catalog').toString()}>
       <Modal visible={isModalVisible} onClose={handleCloseModal}>
-        <Modal.Header align="center">
-          {t('Added to cart')}
-        </Modal.Header>
+        <Modal.Header align="center">{t('Added to cart')}</Modal.Header>
         <Modal.Footer align="center">
-          <Button onClick={handleCloseModal}>
-            {t('Continue shopping')}
-          </Button>
+          <Button onClick={handleCloseModal}>{t('Continue shopping')}</Button>
         </Modal.Footer>
       </Modal>
       <div className="container">
         <section className="section">
           <h2 className={styles.title}>{t('Catalog')}</h2>
           <div className={styles['product-list']}>
-            {products.map(product => (
+            {products.map((product) => (
               <Card
                 key={product._id}
                 product={product}
                 addProduct={handleAddProduct}
-              />)
-            )}
+              />
+            ))}
           </div>
         </section>
       </div>
     </Layout>
   );
-};
+}
 
 Catalog.getInitialProps = async () => {
   const response = await fetch(`${process.env.API_URL}/products`);
@@ -75,7 +75,7 @@ Catalog.getInitialProps = async () => {
   return {
     namespacesRequired: ['common'],
     productsFromServer,
-  }
+  };
 };
 
 export default withTranslation('common')(Catalog);

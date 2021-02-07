@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 export const useSize = (size: string, { sm, md, lg }) => {
   const [s, setS] = useState(md);
@@ -6,9 +6,11 @@ export const useSize = (size: string, { sm, md, lg }) => {
   const setSize = useCallback(() => {
     switch (size) {
       case 'sm':
-        setS(sm); break;
+        setS(sm);
+        break;
       case 'lg':
-        setS(lg); break;
+        setS(lg);
+        break;
       default:
         setS(md);
     }

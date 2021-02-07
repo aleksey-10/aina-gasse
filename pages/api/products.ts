@@ -1,8 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { NextApiRequest, NextApiResponse } from "next"
-import { createHandler } from "../../middlewares";
-import { FAKE_CATALOG_DATA } from "../../utils/Catalog";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { createHandler } from '../../middlewares';
 import Product from '../../models/product';
 
 const handler = createHandler();
@@ -18,7 +17,7 @@ handler.post(async (req: NextApiRequest, res: NextApiResponse) => {
 
   const newProduct = new Product({ title, description, price, imageUrl });
 
-  await newProduct.save()
+  await newProduct.save();
 
   res.status(201);
 });

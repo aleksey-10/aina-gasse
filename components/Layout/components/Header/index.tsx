@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { Button } from '../../../Button';
 import { Menu } from './components/Menu';
 // import  Bag from '../../../../assets/icons/shopping-bag.svg';
@@ -16,11 +16,19 @@ interface HeaderStyles {
   boxShadow?: string;
 }
 
-export const Header = () => {
+export const Header: FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({backgroundColor: 'transparent', boxShadow: 'none'});
+  const [headerStyles, setHeaderStyles] = useState<HeaderStyles>({
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+  });
+
   const { i18n } = useContext(I18nContext);
-  const { isPageLoading, isFirstLoadCompleted } = useSelector<RootState, LayoutState>(state => state.Layout);
+  const { isPageLoading, isFirstLoadCompleted } = useSelector<
+    RootState,
+    LayoutState
+  >((state) => state.Layout);
+
   const { loadCart, cartProductsCount } = useCatalog();
 
   useEffect(() => {
@@ -29,17 +37,24 @@ export const Header = () => {
     }
   }, [isFirstLoadCompleted]);
 
-  const handleScroll = useCallback((event) => {
-    const { scrollTop } = event.target;
-    const hasInitialStyles = Boolean(Object.values(headerStyles).length);
+  const handleScroll = useCallback(
+    (event) => {
+      const { scrollTop } = event.target;
+      const hasInitialStyles = Boolean(Object.values(headerStyles).length);
 
-    if ((scrollTop => 32 && hasInitialStyles) || (scrollTop < 32 && !hasInitialStyles)) {
-      setHeaderStyles(scrollTop > 32
-        ? {}
-        : {backgroundColor: 'transparent', boxShadow: 'none'}
-      );
-    }
-  }, [setHeaderStyles, headerStyles]);
+      if (
+        (scrollTop >= 32 && hasInitialStyles) ||
+        (scrollTop < 32 && !hasInitialStyles)
+      ) {
+        setHeaderStyles(
+          scrollTop > 32
+            ? {}
+            : { backgroundColor: 'transparent', boxShadow: 'none' },
+        );
+      }
+    },
+    [setHeaderStyles, headerStyles],
+  );
 
   useEffect(() => {
     const root = document.getElementById('__next');
@@ -64,7 +79,9 @@ export const Header = () => {
           />
           <div className={styles.logo}>
             <Link href="/">
-              <a><Logo /></a>
+              <a>
+                <Logo />
+              </a>
             </Link>
           </div>
 
@@ -79,9 +96,14 @@ export const Header = () => {
 
             <Link href="/checkout">
               <a className={styles.cart}>
-                <Button type="icon" className={`lnr lnr-cart ${styles['cart-button']}`} />
+                <Button
+                  type="icon"
+                  className={`lnr lnr-cart ${styles['cart-button']}`}
+                />
                 {Boolean(cartProductsCount) && (
-                  <div className={styles['cart-count']}>{cartProductsCount}</div>
+                  <div className={styles['cart-count']}>
+                    {cartProductsCount}
+                  </div>
                 )}
               </a>
             </Link>

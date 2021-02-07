@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
-import { Card } from "../../components/Card";
-import { Layout } from "../../components/Layout";
-import { useCatalog } from "../../hooks/catalog.hooks";
-import { withTranslation } from "../../i18n";
+import { ReactNode } from 'react';
+import { Card } from '../../components/Card';
+import { Layout } from '../../components/Layout';
+import { useCatalog } from '../../hooks/catalog.hooks';
+import { withTranslation } from '../../i18n';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -14,27 +14,24 @@ const Checkout = ({ t }: Props) => {
 
   return (
     <Layout title={t('Cart').toString()}>
-      {!cart?.length
-        ? (
-          <Layout.Empty
-            title={t('Cart').toString()}
-            description={t('Your cart is empty').toString()}
-            button={{ text: t('Go to the catalog').toString(), link: '/catalog' }}
-          />
-        ) : (
-          <div className={`container ${styles.products}`}>
-            {cart.map(product => (
-              <div key={product._id}>
-                <div>{t('Count')}: {product.count}</div>
-                <Card
-                  className={styles.card}
-                  product={product}
-                />
+      {!cart?.length ? (
+        <Layout.Empty
+          title={t('Cart').toString()}
+          description={t('Your cart is empty').toString()}
+          button={{ text: t('Go to the catalog').toString(), link: '/catalog' }}
+        />
+      ) : (
+        <div className={`container ${styles.products}`}>
+          {cart.map((product) => (
+            <div key={product._id}>
+              <div>
+                {t('Count')}: {product.count}
               </div>
-            ))}
-          </div>
-        )
-      }
+              <Card className={styles.card} product={product} />
+            </div>
+          ))}
+        </div>
+      )}
     </Layout>
   );
 };

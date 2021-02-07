@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button } from '../../../../../Button';
 import { Language } from '../Language';
@@ -36,13 +39,9 @@ export const Menu = ({ visible, onClose }: Props) => {
       <nav
         className={styles.nav}
         style={{ transform: `translateX(${visible ? 0 : '-100%'})` }}
-        onClick={event => event.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
       >
-        <Button
-          type="icon"
-          className={styles.times}
-          onClick={onClose}
-        >
+        <Button type="icon" className={styles.times} onClick={onClose}>
           &times;
         </Button>
         <ul className={styles.list}>
@@ -62,7 +61,9 @@ export const Menu = ({ visible, onClose }: Props) => {
         <Language onChange={onClose} />
 
         <a href="mailto:gassefashionhouse@gmail.com">
-          <Button type="text" className={styles.email}>gassefashionhouse@gmail.com</Button>
+          <Button type="text" className={styles.email}>
+            gassefashionhouse@gmail.com
+          </Button>
         </a>
       </nav>
     </div>

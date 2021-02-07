@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { useTranslation } from "../i18n";
+import { useMemo } from 'react';
+import { useTranslation } from '../i18n';
 //import { useTranslation } from "react-i18next";
-import { MENU } from "../utils/Menu";
+import { MENU } from '../utils/Menu';
 
 export const useMenu = () => {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ export const useMenu = () => {
       get path() {
         return `/${key.toLowerCase()}`;
       },
-    }))
+    }));
   }, [t]);
 
   return menu;

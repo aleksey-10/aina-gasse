@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { ReactNode, useMemo } from 'react';
 import { Body, Footer, Header } from './components';
 import { Fade } from 'react-reveal';
@@ -19,20 +21,18 @@ const Modal = ({ children, visible, onClose }: Props) => {
   }, [visible]);
 
   return (
-    <Fade
-      duration={500}
-      when={visible}
-      unmountOnExit
-    >
+    <Fade duration={500} when={visible} unmountOnExit>
       <div className={classNames} onClick={onClose}>
-        <div className={styles.modal} onClick={(event) => event.stopPropagation()}>
+        <div
+          className={styles.modal}
+          onClick={(event) => event.stopPropagation()}
+        >
           {children}
         </div>
       </div>
     </Fade>
   );
 };
-
 
 Modal.Header = Header;
 Modal.Body = Body;

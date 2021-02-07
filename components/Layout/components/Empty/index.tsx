@@ -21,9 +21,7 @@ export const Empty = ({ title, description, button }: Props) => {
         <h3 style={{ marginBottom: 16 }}>{description}</h3>
         <Link href={button.link}>
           <a>
-            <Button type="link">
-              {button.text}
-            </Button>
+            <Button type="link">{button.text}</Button>
           </a>
         </Link>
       </Fade>
