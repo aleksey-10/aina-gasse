@@ -4,7 +4,20 @@ import styles from './styles.module.scss';
 import { useSelector } from 'react-redux';
 import RootState from '../interfaces/RootState';
 import { withTranslation } from '../i18n';
-import { ReactNode } from 'react';
+
+const metaTags = [
+  <meta property="og:title" content="Aina Gasse" key="title" />,
+  <meta
+    property="description"
+    content="Дизайнерская одежда"
+    key="description"
+  />,
+  <meta
+    property="og:description"
+    content="Дизайнерская одежда"
+    key="ogdescription"
+  />,
+];
 
 interface Image {
   original: string;
@@ -33,7 +46,7 @@ function Index({ t }: Props) {
   );
 
   return (
-    <Layout title={t('Main Page').toString()}>
+    <Layout title={t('Main Page').toString()} metaTags={metaTags}>
       <div className="container">
         <section className={`section ${styles.intro}`}>
           <div className={styles.left}>
