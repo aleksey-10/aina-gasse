@@ -28,7 +28,7 @@ interface Image {
 const images: Image[] = [
   {
     original:
-      'https://scontent-iev1-1.cdninstagram.com/v/t51.2885-15/e35/p1080x1080/135295428_183684940154133_8027505456403924715_n.jpg?_nc_ht=scontent-iev1-1.cdninstagram.com&_nc_cat=109&_nc_ohc=RInqFI2g4EoAX9pVN9x&tp=1&oh=fb933f797e4bd89b6aa056f638faf0a5&oe=6024F2FE',
+      'https://scontent-iev1-1.cdninstagram.com/v/t51.2885-15/e35/p1080x1080/135295428_183684940154133_8027505456403924715_n.jpg?_nc_ht=scontent-iev1-1.cdninstagram.com&_nc_cat=109&_nc_ohc=zmZ2BjGNxPcAX-l6xhh&tp=1&oh=18575d22e87dadef68e55d222348ccb2&oe=605468FE',
   },
   {
     original:

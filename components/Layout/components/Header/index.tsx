@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useContext, useEffect, useState } from 'react';
 import { Button } from '../../../Button';
 import { Menu } from './components/Menu';
-// import  Bag from '../../../../assets/icons/shopping-bag.svg';
+import Bag from '../../../../assets/icons/shopping-bag.svg';
 import { Logo } from '../../../Logo';
 import { Fade } from 'react-reveal';
 import styles from './styles.module.scss';
@@ -96,10 +96,9 @@ export const Header: FC = () => {
 
             <Link href="/checkout">
               <a className={styles.cart}>
-                <Button
-                  type="icon"
-                  className={`lnr lnr-cart ${styles['cart-button']}`}
-                />
+                <Button type="icon" className={styles['cart-button']}>
+                  <Bag />
+                </Button>
                 {Boolean(cartProductsCount) && (
                   <div className={styles['cart-count']}>
                     {cartProductsCount}

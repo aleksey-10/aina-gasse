@@ -2,6 +2,8 @@
 @import 'styles/vars';
 @import 'styles/extends';
 
+$icon-size: 1.5rem;
+
 .button {
   padding: 16px 24px;
 
@@ -21,12 +23,16 @@
     display: inline-flex;
     align-items: center;
     padding: 8px 0;
-    font-size: 1.75rem;
+    font-size: $icon-size;
 
     svg {
-      width: 1.75rem;
-      height: 1.75rem;
+      width: $icon-size;
+      height: $icon-size;
       transition: fill 0.2s;
+    }
+
+    g {
+      fill: inherit;
     }
 
     &:hover svg {

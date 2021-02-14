@@ -8,6 +8,8 @@ import { withTranslation } from '../../i18n';
 import Product from '../../interfaces/Product';
 import { Fade } from 'react-reveal';
 import styles from './styles.module.scss';
+import { useSelector } from 'react-redux';
+import RootState from '../../interfaces/RootState';
 
 interface Props {
   t(s: string): ReactNode;
@@ -17,17 +19,12 @@ interface Props {
 function Catalog({ t, productsFromServer }: Props) {
   const { addProduct, fillCatalog, products } = useCatalog();
   const [isModalVisible, setModalVisible] = useState<boolean>(false);
+  const isPageLoading = useSelector<RootState, boolean>(
+    (state) => state.Layout.isPageLoading,
+  );
 
   useEffect(() => {
     fillCatalog(productsFromServer);
-
-    // fetch(`${process.env.API_URL}/products`, {
-    //   method: 'POST',
-    //   body: JSON.stringify(productsFromServer),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // })
   }, [productsFromServer, fillCatalog]);
 
   const handleAddProduct = useCallback(
@@ -53,7 +50,7 @@ function Catalog({ t, productsFromServer }: Props) {
       </Modal>
       <div className="container">
         <section className="section">
-          <Fade>
+          <Fade when={!isPageLoading}>
             <h2 className={styles.title}>{t('Catalog')}</h2>
           </Fade>
           <div className={styles['product-list']}>
