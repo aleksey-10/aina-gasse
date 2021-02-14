@@ -6,6 +6,7 @@ import Modal from '../../components/Modal';
 import { useCatalog } from '../../hooks/catalog.hooks';
 import { withTranslation } from '../../i18n';
 import Product from '../../interfaces/Product';
+import { Fade } from 'react-reveal';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -52,7 +53,9 @@ function Catalog({ t, productsFromServer }: Props) {
       </Modal>
       <div className="container">
         <section className="section">
-          <h2 className={styles.title}>{t('Catalog')}</h2>
+          <Fade>
+            <h2 className={styles.title}>{t('Catalog')}</h2>
+          </Fade>
           <div className={styles['product-list']}>
             {products.map((product) => (
               <Card
